@@ -41,7 +41,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
                     .permitAll()
                 .and()
-
+                //.rememberMe().userDetailsService(userDetailsService())
         ;
     }
 
@@ -54,7 +54,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public PasswordEncoder encoder(){
-        return NoOpPasswordEncoder.getInstance();
-               // new BCryptPasswordEncoder(12);
+        return //NoOpPasswordEncoder.getInstance();
+                new BCryptPasswordEncoder(12);
     }
 }

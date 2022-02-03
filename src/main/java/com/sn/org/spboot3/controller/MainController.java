@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.net.URI;
+import java.net.http.HttpRequest;
+
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -49,4 +52,6 @@ public class MainController {
         model.addAttribute("persons",personRepo.findAll());
         return "/enterAdmin";
     }
+
+
 }
