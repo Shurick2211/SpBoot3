@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Admin</title>
+    <style type="text/css">
+           TABLE {
+            width: 600px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+           }
+           TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+           }
+           TH {
+            background: #b0e0e6; /* Цвет фона */
+           }
+  </style>
+</head>
+<body>
+    <h1>You Enter Admin</h1>
+    <a href="/person/add">Add user</a>
+    <span>     </span>
+    <a href="/">Main</a>
+    <hr/>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr th:each="person:${persons}">
+                <td><span th:text="${person.id}">Id</span></td>
+                <td><a th:text="${person.name}" th:href="@{/person/edit/{id}(id=${person.id})}">Name</a></td>
+                <td><span th:text="${person.login}">Login</span></td>
+                <td><span th:text="${person.password}">Password</span></td>
+                <td><span th:text="${person.role}">Role</span></td>
+                <td><span th:text="${person.getActive()}">Active</span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

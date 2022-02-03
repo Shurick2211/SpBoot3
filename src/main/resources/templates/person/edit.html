@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Person</title>
+</head>
+<body>
+  <form id="delete"  th:action="@{/person/delete/{id}(id=${person.id})}" th:method="GET" >
+    <input form="delete" type="submit" value="Delete Person">
+  </form>
+  <form id="edit" th:action="@{/person/edit/{id}(id=${person.id})}" th:method="POST" th:object="${person}">
+    <p>Name:
+    <input id="name" type="text" th:field="*{name}">
+    </p>
+    <p>Login:
+    <input id="login" type="text"  th:field="*{login}">
+    </p>
+    <p>Password:
+    <input type="text" id="password"  th:field="*{password}">
+    </p>
+    <p>Role:
+      <select  th:field="*{role}">
+        <option th:each="role : ${roles}"
+                th:value="${role}"
+                th:text="${role}"
+                th:selected="${role}"/>
+      </select>
+    </p>
+
+    <input form="edit" type="submit" value="Edit Person">
+
+
+  </form>
+</body>
+</html>

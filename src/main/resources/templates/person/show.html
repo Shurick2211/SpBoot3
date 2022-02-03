@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${person.name}">p</title>
+</head>
+<body>
+    <h1>Name:
+        <span th:text="${person.name}">name</span>
+    </h1>
+    <p>Login:
+        <span th:text="${person.login}">id</span>
+    </p>
+    <p>Role:
+        <span th:text="${person.role}">id</span>
+    </p>
+    <p>Id:
+        <span th:text="${person.id}">id</span>
+    </p>
+<hr/>
+    <h2>
+        <a href="/">Main page</a>
+    </h2>
+</body>
+</html>
