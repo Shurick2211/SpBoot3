@@ -14,11 +14,13 @@ public class Person implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+
     private String login;
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
     private boolean isActive;
+
 
     public Person() {
     }
@@ -31,6 +33,16 @@ public class Person implements UserDetails {
         this.role = role;
         this.isActive=isActive;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+
 
     public long getId() {
         return id;

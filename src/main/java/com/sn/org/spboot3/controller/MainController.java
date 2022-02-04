@@ -1,8 +1,10 @@
 package com.sn.org.spboot3.controller;
 
 import com.sn.org.spboot3.model.Person;
+import com.sn.org.spboot3.model.Post;
 import com.sn.org.spboot3.model.Role;
 import com.sn.org.spboot3.repo.PersonRepo;
+import com.sn.org.spboot3.repo.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
     @Autowired
     PersonRepo personRepo;
+    @Autowired
+    PostRepo postRepo;
 
     @GetMapping("/")
     public String index(
@@ -38,6 +44,10 @@ public class MainController {
             @AuthenticationPrincipal Person person,
             Model model){
             model.addAttribute("person",person);
+            List<Post> posts=  postRepo.findAllByAuthor(person);
+
+
+            model.addAttribute("posts",posts);
         return "/enterUser";
     }
     @GetMapping("/enterModer")
@@ -45,6 +55,9 @@ public class MainController {
             @AuthenticationPrincipal Person person,
             Model model){
         model.addAttribute("person",person);
+        List<Post> posts=postRepo.findAll();
+
+        model.addAttribute("posts",posts);
         return "/enterModer";
     }
     @GetMapping("/enterAdmin")

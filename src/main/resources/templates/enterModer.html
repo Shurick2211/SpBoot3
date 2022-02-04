@@ -7,6 +7,10 @@
 <body>
   <h1>You Enter Moder Panel</h1>
    <h2 th:text="${person.name}">Person</h2>
+  <div th:each="post:${posts}">
+      <b><i th:text="${post.author.name}+': '">name</i></b>
+      <span th:text="${post.text}">post</span>
+  </div>
   <hr/>
   <h3>
       <a href="/">Main</a>

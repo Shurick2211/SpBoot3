@@ -6,8 +6,12 @@
 </head>
 <body>
   <h1>You Enter USER!</h1>
-   <h2 th:text="${person.name}">Person</h2><br/>
-    <h2 th:text="${person.role}">Person</h2>
+   <h2 th:text="${person.name}+'  '+ ${person.role}">Person</h2><br/>
+    <h3 >You Post:
+      <div th:each="post:${posts}">
+          <i th:text="${post.text}">post</i>
+      </div>
+    </h3>
   <hr/>
   <h3>
     <a href="/">Main</a>
