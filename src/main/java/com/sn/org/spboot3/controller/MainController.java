@@ -48,7 +48,7 @@ public class MainController {
             List<Post> posts=  postRepo.findAllByAuthor(person);
             model.addAttribute("posts",posts);
 
-        System.out.println(person.getPosts().size());
+       // System.out.println(person.getPosts().size());
         return "/enterUser";
     }
     @GetMapping("/enterModer")
