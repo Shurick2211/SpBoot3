@@ -44,10 +44,11 @@ public class MainController {
             @AuthenticationPrincipal Person person,
             Model model){
             model.addAttribute("person",person);
+
             List<Post> posts=  postRepo.findAllByAuthor(person);
-
-
             model.addAttribute("posts",posts);
+
+        System.out.println(person.getPosts().size());
         return "/enterUser";
     }
     @GetMapping("/enterModer")

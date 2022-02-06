@@ -21,6 +21,9 @@ public class Person implements UserDetails {
     private Role role;
     private boolean isActive;
 
+    @ElementCollection(targetClass = Post.class, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
+    private List <Post> posts;
 
     public Person() {
     }
@@ -32,6 +35,14 @@ public class Person implements UserDetails {
         this.password = password;
         this.role = role;
         this.isActive=isActive;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public boolean isActive() {
@@ -125,5 +136,6 @@ public class Person implements UserDetails {
     public boolean isEnabled() {
         return isActive;
     }
+
 
 }
