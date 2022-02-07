@@ -8,9 +8,11 @@
   <h1>You Enter USER!</h1>
    <h2 th:text="${person.name}+'  '+ ${person.role}">Person</h2><br/>
     <h3 >You Post:
-      <div th:each="post:${posts}">
-          <i th:text="${post.text}">post</i>
-      </div>
+        <ul>
+              <li th:each="post:${posts}">
+                  <i th:text="${post.text}">post</i>
+              </li>
+        </ul>
     </h3>
   <hr/>
   <h3>

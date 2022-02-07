@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class Person implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
 
@@ -20,14 +20,22 @@ public class Person implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     private boolean isActive;
-
+/*
     @ElementCollection(targetClass = Post.class, fetch = FetchType.EAGER)
     @OneToMany(fetch = FetchType.EAGER)
     private List <Post> posts;
-
+*/
     public Person() {
     }
 
+    public Person(long id, String name, String login, String password, Role role, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.isActive = isActive;
+    }
 
     public Person(String name, String login, String password, Role role, Boolean isActive) {
         this.name = name;
@@ -36,7 +44,7 @@ public class Person implements UserDetails {
         this.role = role;
         this.isActive=isActive;
     }
-
+/*
     public List<Post> getPosts() {
         return posts;
     }
@@ -44,7 +52,7 @@ public class Person implements UserDetails {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
-
+*/
     public boolean isActive() {
         return isActive;
     }

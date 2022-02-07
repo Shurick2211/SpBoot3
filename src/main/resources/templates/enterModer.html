@@ -8,8 +8,13 @@
   <h1>You Enter Moder Panel</h1>
    <h2 th:text="${person.name}">Person</h2>
   <div th:each="post:${posts}">
-      <b><i th:text="${post.author.name}+': '">name</i></b>
-      <span th:text="${post.text}">post</span>
+
+      <form id="msg" th:action="@{/person/send/{id}(id=${post.author.login})}" th:method="POST">
+          <b><i th:text="${post.author.name}+': '">name</i></b>
+          <span th:text="${post.text}+'   '">post</span>
+          <input th:if="${post.author.id!=1486585150}" type="text" name="msg">
+          <input th:if="${post.author.id!=1486585150}" type="submit" value="Send message">
+      </form>
   </div>
   <hr/>
   <h3>

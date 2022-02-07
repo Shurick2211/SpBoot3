@@ -27,7 +27,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/","/hello","/person/add","/person/{id}","/img/**").permitAll()
                 .antMatchers("/enterUser").authenticated()
-                .antMatchers("/enterModer").hasAnyAuthority(Role.MODER.name(),Role.ADMIN.name())
+                .antMatchers("/enterModer", "/person/send/{id}").hasAnyAuthority(Role.MODER.name(),Role.ADMIN.name())
                 .antMatchers("/enterAdmin", "/person/**").hasAuthority(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()

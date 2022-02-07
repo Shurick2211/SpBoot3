@@ -9,5 +9,5 @@ import java.util.List;
 public interface PersonRepo extends JpaRepository<Person,Long> {
 
   Person getByLogin(String login);
-
+  Person getByName(String name);
 }
