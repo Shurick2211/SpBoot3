@@ -2,10 +2,13 @@ package com.sn.org.spboot3.controller;
 
 import com.sn.org.spboot3.bot.Bot;
 import com.sn.org.spboot3.model.Person;
+import com.sn.org.spboot3.model.Post;
 import com.sn.org.spboot3.model.Role;
 import com.sn.org.spboot3.repo.PersonRepo;
+import com.sn.org.spboot3.repo.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class PersonController {
     @Autowired
     PersonRepo personRepo;
+    @Autowired
+    PostRepo postRepo;
     @Autowired
     Bot bot;
 
@@ -60,6 +65,17 @@ public class PersonController {
         personRepo.deleteById(id);
         return "redirect:/enterAdmin";
     }
+    @GetMapping("/send")
+    public String sendMsgGet(@ModelAttribute("postId") long postId,
+                             @AuthenticationPrincipal Person person,
+                             Model model
+    )  {
+        model.addAttribute("person",person);
+        model.addAttribute("post", postRepo.getById(postId));
+
+        return "/sendMessage";
+    }
+
     @PostMapping("/send/{id}")
     public String sendMsg(@PathVariable long id,
                             @RequestParam String msg
@@ -69,4 +85,5 @@ public class PersonController {
 
         return "redirect:/enterModer";
     }
+
 }

@@ -6,6 +6,7 @@ import com.sn.org.spboot3.model.Role;
 import com.sn.org.spboot3.repo.PersonRepo;
 import com.sn.org.spboot3.repo.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,12 +54,14 @@ public class MainController {
     }
     @GetMapping("/enterModer")
     public String enterModer(
+
             @AuthenticationPrincipal Person person,
             Model model){
         model.addAttribute("person",person);
         List<Post> posts=postRepo.findAll();
 
         model.addAttribute("posts",posts);
+
         return "/enterModer";
     }
     @GetMapping("/enterAdmin")

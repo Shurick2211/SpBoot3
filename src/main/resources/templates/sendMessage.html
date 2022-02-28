@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta  charset="UTF-8">
+    <title>Send Message</title>
+</head>
+<body>
+  <h1>You Send Message</h1>
+   <h2 th:text="${person.name}">Person</h2>
+
+      <form id="msg" th:action="@{/person/send/{id}(id=${post.author.login})}" th:method="POST">
+          <b><i th:text="${post.author.name}+': '">name</i></b>
+          <span th:text="${post.text}+'   '">post</span>
+          <input name="msg" type="text">
+          <input  type="submit" value="Send message">
+      </form>
+
+  <hr/>
+  <h3>
+      <a href="/">Main</a>
+  </h3>
+</body>
+</html>

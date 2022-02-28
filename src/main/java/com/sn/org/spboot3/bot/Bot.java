@@ -26,9 +26,10 @@ public class Bot extends TelegramLongPollingBot {
     PersonRepo personRepo;
     @Autowired
     ApplicationContext applicationContext;
-    private  Person BOT=null;
+    private  Person BOT;
+
     private void saveBotByDB() {
-        if(personRepo.getByName(name)==null)
+        if(personRepo.getByName(getBotUsername())==null)
         try {
 
             personRepo.save(new Person(
@@ -61,7 +62,9 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        saveBotByDB();
+
+
+
         if(update.getMessage().getText().startsWith("/")) {
             if (update.getMessage().getText().startsWith("/start")) {
                 personRepo.save(new Person(
@@ -96,6 +99,8 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void sendMessage(String chatId,String text){
+        saveBotByDB();
+
         SendMessage sendMessage= new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setText(text);
