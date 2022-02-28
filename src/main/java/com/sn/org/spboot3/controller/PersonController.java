@@ -53,9 +53,10 @@ public class PersonController {
         return "/person/edit";
     }
     @PostMapping("/edit/{id}")
-    public String editPerson(@PathVariable long id,@ModelAttribute Person person){
+    public String editPerson(@PathVariable long id,@ModelAttribute Person person,@ModelAttribute("isActive")String ch){
         person.setLogin(""+id);
-        person.setActive(true);
+
+       if(ch.equals("on")) person.setActive(true);
         personRepo.save(person);
         return "redirect:/enterAdmin";
     }
@@ -83,6 +84,15 @@ public class PersonController {
 
         bot.sendMessage(""+id,msg);
 
+        return "redirect:/enterModer";
+    }
+
+    @GetMapping("/ban/{id}")
+    public String ban(@PathVariable long id)  {
+
+            Person person=personRepo.getById(id);
+            person.setActive(false);
+            personRepo.save(person);
         return "redirect:/enterModer";
     }
 

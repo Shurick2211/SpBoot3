@@ -12,9 +12,10 @@
            <form  th:action="@{/person/send(postId=${postId})}" th:method="GET">
                <b><i th:text="${post.author.name}+': '">name</i></b>
                <span th:text="${post.text}+'   '">post</span>
-              <input  type="hidden" name="postId" th:value="${post.postId}">
-          <input th:if="${post.author.id!=1486585150}" type="submit" value="Send message">
-      </form>
+               <input  type="hidden" name="postId" th:value="${post.postId}">
+               <input th:if="${post.author.id!=1486585150}" type="submit" value="Send message">
+               <a th:if="${post.author.id!=1486585150&&post.author.isActive}" th:href="@{/person/ban/{id}(id=${post.author.login})}" >BAN USER</a>
+           </form>
 
   </div>
   <hr/>
